@@ -1,0 +1,1 @@
+"C:\Users\varun\anaconda3\envs\GIS\python.exe" "D:\WII_BRP\Automation\Movebank_mailer\Movebank_mailer.py"
