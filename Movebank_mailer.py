@@ -19,7 +19,7 @@ def callMovebankAPI(params):
     # Requests Movebank API with ((param1, value1), (param2, value2),).
     # Assumes the environment variables 'mbus' (Movebank user name) and 'mbpw' (Movebank password).
     # Returns the API response as plain text.
-    basic = HTTPBasicAuth('varunkher23', '8308303704a')
+    basic = HTTPBasicAuth('Jhala', 'Tigercell2018!')
     url = "https://www.movebank.org/movebank/service/json-auth"
     url1 = "https://www.movebank.org/movebank/service/direct-read"
     response = requests.get(url1, params=params, auth=basic)
@@ -87,6 +87,7 @@ for row in row_values[:-1]:
 
 df_acc['timestamp']=pd.to_datetime(df_acc['timestamp']).dt.tz_localize("UTC").dt.tz_convert("Asia/Calcutta")
 area_poly = gpd.read_file("Area_polygons.shp" ) #
+tag_to_individual = df[["tag_local_identifier","individual_local_identifier"]].drop_duplicates().rename(columns = {'tag_local_identifier':'Tag_ID'})
 
 tag_list=[]
 latest_battery_voltage_list=[]
@@ -98,11 +99,14 @@ n_acc_list=[]
 last_location_list=[]
 enclosure_list=[]
 
-for tag in ['"5949"', '"5947"', '"8649"', '"8651"']:
+for tag in ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"867688031356557"']:
     try:
         df_filtered=df[df['tag_local_identifier'] == tag]
         df_acc_filtered=df_acc[df_acc['tag_local_identifier'] == tag]
-        latest_battery_voltage=list(filter(None, df_filtered.eobs_battery_voltage.tolist()))[-1]
+        try:
+            latest_battery_voltage=list(filter(None, df_filtered.eobs_battery_voltage.tolist()))[-1]
+        except:
+            latest_battery_voltage=int(float(list(filter(None, df_filtered.tag_voltage.tolist()))[-1]))
         last_timestamp=df_filtered.timestamp.tolist()[-1]
         date_diff=datetime.now().date()-last_timestamp.date()
         n_points=df_filtered.shape[0]
@@ -143,15 +147,18 @@ for tag in ['"5949"', '"5947"', '"8649"', '"8651"']:
     enclosure_list.append(Enclosure) #
     
     
-output=pd.DataFrame(data={'Tag ID':tag_list, 'GPS Locations (7 days)':n_points_list,'Accelerometer recordings (7 days)':n_acc_list, 'Last Timestamp':last_timestamp_list,'Time since last location':date_diff_list,                          
+output=pd.DataFrame(data={'Tag_ID':tag_list, 'GPS Locations (7 days)':n_points_list,'Accelerometer recordings (7 days)':n_acc_list, 'Last Timestamp':last_timestamp_list,'Time since last location':date_diff_list,                          
                           'Last Location' : last_location_list,'Last Battery Voltage':latest_battery_voltage_list,
                          'Area' : enclosure_list}) #
-output
+output=output.merge(tag_to_individual,how="left")
+output.insert(0,"individual_local_identifier",output.pop("individual_local_identifier"))
+output.pop("Tag_ID")
+output = output.rename(columns={'individual_local_identifier': 'Animal_Name'}).dropna()
 output_html=output.to_html()
 
 kml=simplekml.Kml()
-colors = [simplekml.Color.red,simplekml.Color.blue,simplekml.Color.white,simplekml.Color.yellow]
-tags= ['"5949"', '"5947"', '"8649"', '"8651"']
+colors = [simplekml.Color.red,simplekml.Color.blue,simplekml.Color.white,simplekml.Color.yellow,simplekml.Color.green,simplekml.Color.black]
+tags= ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"867688031356557"']
 for j in range(len(tags)):
     points=df[df['tag_local_identifier'] == tags[j]]
     points['location_lat'].replace('', np.nan, inplace=True)
@@ -177,8 +184,8 @@ from email.mime.text import MIMEText
 import smtplib
 
 def send_email(send_to, subject, filename):
-    send_from = "varunkher23@gmail.com"
-    password = "zbooyeqgjolmhyyj"
+    send_from = "campa.gib@gmail.com"#"varunkher23@gmail.com"
+    password = "cirwdatzzemfuqtc"#"zbooyeqgjolmhyyj"
     message1=f"Dear User,\n\n                Please find the summarised data for GIBs tagged in Desert National Park WLS and Pokharan-Ramdeora-PFFR. \n                This is an automated mail.\n\n                Best Regards,\n                WII Bustard Recovery Program"
     message2 = output_html
     for receiver in send_to:
@@ -199,4 +206,4 @@ def send_email(send_to, subject, filename):
             server.sendmail(multipart["From"], multipart["To"], multipart.as_string())
             server.quit()
 
-send_email(["varunkher23@gmail.com","shimontikagupta@gmail.com"], "Tagged GIB locations for last week", "df_kml.kml")
+send_email(["campa.gib@gmail.com","swap.lawrence@gmail.com","varunkher23@gmail.com","shimontikagupta@gmail.com"], "Tagged GIB locations for last week", "df_kml.kml")
