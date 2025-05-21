@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="211">
+        <Placemark id="213">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="212">
+                <coordinates>70.63638614746145,26.72707183524315,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="215">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="214">
+                <coordinates>70.63808436766017,26.730461681856326,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="217">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="216">
+                <coordinates>70.64013001128103,26.731522046927676,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="219">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="218">
+                <coordinates>70.64013075721958,26.731522351464072,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="221">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="220">
+                <coordinates>70.63745133890113,26.73585014113845,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="223">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="222">
+                <coordinates>70.60317189008997,26.736857022678198,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="225">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="224">
+                <coordinates>70.59929843727977,26.722542285974377,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="227">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-25 00:00:00</description>
+            <Point id="226">
+                <coordinates>70.59926597009546,26.722552524684733,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="229">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-23 00:00:00</description>
+            <Point id="228">
+                <coordinates>70.60005179133444,26.795515522898942,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="231">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-22 00:00:00</description>
+            <Point id="230">
+                <coordinates>70.60067940336286,26.79724894354039,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="233">
+            <name>GIB</name>
+            <description>Observer: ['Others']
+Date: 2025-04-22 00:00:00</description>
+            <Point id="232">
+                <coordinates>70.60069012192328,26.79725124341768,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
