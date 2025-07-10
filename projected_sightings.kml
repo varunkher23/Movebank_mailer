@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="7">
+        <Placemark id="9">
+            <name>GIB</name>
+            <description>Observer: ['Pradhyuman']
+Date: 2025-07-02 00:00:00</description>
+            <Point id="8">
+                <coordinates>71.94153995964022,26.97538573018242,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="11">
+            <name>GIB</name>
+            <description>Observer: ['Pradhyuman']
+Date: 2025-06-30 00:00:00</description>
+            <Point id="10">
+                <coordinates>71.98672879362478,27.008175690686535,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
