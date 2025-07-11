@@ -1,0 +1,9 @@
+requests
+pandas
+numpy
+simplekml
+geopandas
+fiona
+shapely
+pyproj
+openpyxl

@@ -184,8 +184,8 @@ from email.mime.text import MIMEText
 import smtplib
 
 def send_email(send_to, subject, filename):
-    send_from = "campa.gib@gmail.com"#"varunkher23@gmail.com"
-    password = "cirwdatzzemfuqtc"#"zbooyeqgjolmhyyj"
+    send_from = "campa.gib@gmail.com"#
+    password = "cirwdatzzemfuqtc"#
     message1=f"Dear User,\n\n                Please find the summarised data for GIBs tagged in Desert National Park WLS and Pokharan-Ramdeora-PFFR. \n                This is an automated mail.\n\n                Best Regards,\n                WII Bustard Recovery Program"
     message2 = output_html
     for receiver in send_to:
