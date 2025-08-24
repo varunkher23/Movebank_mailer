@@ -97,11 +97,6 @@ for tag in ['"12592"']:
             Enclosure=f"NA"
     #print(f"{tag}\t{n_points}\t\t{n_acc}\t\t{latest_battery_voltage}\t\t{last_timestamp}\t\t{date_diff.days} days ago\t{last_location}")
     except:
-        del(df_filtered)
-        del(last_location)
-        del(last_timestamp)
-        del(date_diff)
-        del(n_points)
         df_filtered=df[df['tag_local_identifier'] == tag]
         latest_battery_voltage=f"NA"
         last_timestamp=f"NA"
