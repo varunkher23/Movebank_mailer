@@ -1,6 +1,6 @@
 requests
 pandas
-numpy=1.26.4
+numpy==1.26.4
 simplekml
 geopandas
 fiona
