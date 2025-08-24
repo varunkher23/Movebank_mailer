@@ -1,4 +1,4 @@
-name: Movebank_mailer.py
+name: Movebank_mailer_Guj.py
 
 on:
   schedule:
