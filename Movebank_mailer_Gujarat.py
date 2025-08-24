@@ -1,19 +1,13 @@
 import requests
 from requests.auth import HTTPBasicAuth
-import os
 import hashlib
-import csv
-import json
-import io
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
-import time
 import simplekml 
 import geopandas as gpd
 import fiona
 fiona.drvsupport.supported_drivers['KML'] = 'rw'
-import shapely.geometry
 
 def callMovebankAPI(params):
     # Requests Movebank API with ((param1, value1), (param2, value2),).
@@ -44,11 +38,12 @@ def callMovebankAPI(params):
 
 t_e=datetime.now()
 t_e=f"{t_e.year}{t_e.month:02d}{t_e.day:02d}{t_e.hour:02d}{t_e.minute:02d}{t_e.second:04d}"
+
 t_s=datetime.now() - timedelta(days=7)
 t_s=f"{t_s.year}{t_s.month:02d}{t_s.day:02d}{t_s.hour:02d}{t_s.minute:02d}{t_s.second:04d}"
 
 params_gps = (('entity_type', 'event'),
-          ('study_id', '766916593'),
+          ('study_id', '3560194709'),
           ('timestamp_start', t_s), 
           ('timestamp_end', t_e),
           ('sensor_type_id', '653'),
@@ -97,6 +92,12 @@ for tag in ['"12592"']:
             Enclosure=f"NA"
     #print(f"{tag}\t{n_points}\t\t{n_acc}\t\t{latest_battery_voltage}\t\t{last_timestamp}\t\t{date_diff.days} days ago\t{last_location}")
     except:
+        del(df_filtered)
+        del(latest_battery_voltage)
+        del(last_location)
+        del(last_timestamp)
+        del(date_diff)
+        del(n_points)
         df_filtered=df[df['tag_local_identifier'] == tag]
         latest_battery_voltage=f"NA"
         last_timestamp=f"NA"
