@@ -27,4 +27,4 @@ jobs:
           pip install -r requirements.txt
           
       - name: execute py script 
-        run: python Movebank_mailer_Guj.py
+        run: python Movebank_mailer_Gujarat.py
