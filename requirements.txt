@@ -1,5 +1,5 @@
 requests
-pandas==2.2.0
+pandas==2.3.2
 numpy==1.26.4
 simplekml
 geopandas
