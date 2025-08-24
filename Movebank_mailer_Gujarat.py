@@ -98,7 +98,6 @@ for tag in ['"12592"']:
     #print(f"{tag}\t{n_points}\t\t{n_acc}\t\t{latest_battery_voltage}\t\t{last_timestamp}\t\t{date_diff.days} days ago\t{last_location}")
     except:
         del(df_filtered)
-        del(latest_battery_voltage)
         del(last_location)
         del(last_timestamp)
         del(date_diff)
