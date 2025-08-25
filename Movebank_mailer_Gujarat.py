@@ -179,4 +179,4 @@ def send_email(send_to, subject, filename):
             server.sendmail(multipart["From"], multipart["To"], multipart.as_string())
             server.quit()
 
-send_email(["varunkher23@gmail.com" ], "Tagged GIB locations for last week -- Gujarat", "df_kml_guj.kml")
+send_email(["varunkher23@gmail.com", "sutirthadutta2016@gmail.com", "harsh209@gmail.com" ], "Tagged GIB locations for last week -- Gujarat", "df_kml_guj.kml")
