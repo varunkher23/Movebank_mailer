@@ -8,6 +8,7 @@ import simplekml
 import geopandas as gpd
 import fiona
 fiona.drvsupport.supported_drivers['KML'] = 'rw'
+import shapely.geometry
 
 def callMovebankAPI(params):
     # Requests Movebank API with ((param1, value1), (param2, value2),).
