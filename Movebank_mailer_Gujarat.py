@@ -74,7 +74,7 @@ n_points_list=[]
 last_location_list=[]
 enclosure_list=[]
 
-for tag in ['"12592"']:
+for tag in ['"12592"','12592']:
     try:
         df_filtered=df[df['tag_local_identifier'] == tag]
         try:
