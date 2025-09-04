@@ -102,6 +102,8 @@ enclosure_list=[]
 for tag in ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"867688031356557"']:
     try:
         df_filtered=df[df['tag_local_identifier'] == tag]
+        df_filtered["time_diff"] = df_filtered['timestamp'].diff().dt.total_seconds()
+        df_filtered = df_filtered[df_filtered['time_diff'] > 120]
         df_acc_filtered=df_acc[df_acc['tag_local_identifier'] == tag]
         try:
             latest_battery_voltage=list(filter(None, df_filtered.eobs_battery_voltage.tolist()))[-1]
@@ -208,3 +210,4 @@ def send_email(send_to, subject, filename):
 
 
 send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
+
