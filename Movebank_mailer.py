@@ -163,6 +163,8 @@ colors = [simplekml.Color.red,simplekml.Color.blue,simplekml.Color.white,simplek
 tags= ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"867688031356557"']
 for j in range(len(tags)):
     points=df[df['tag_local_identifier'] == tags[j]]
+    points["time_diff"] = points['timestamp'].diff().dt.total_seconds()
+    points = points[points['time_diff'] > 120]
     points['location_lat'].replace('', np.nan, inplace=True)
     points['location_long'].replace('', np.nan, inplace=True)
     points=points.dropna(subset=['location_lat', 'location_long'])
@@ -210,4 +212,5 @@ def send_email(send_to, subject, filename):
 
 
 send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
+
 
