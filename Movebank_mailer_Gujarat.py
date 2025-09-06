@@ -131,6 +131,8 @@ colors = [simplekml.Color.red]
 tags= ['"12592"']
 for j in range(len(tags)):
     points=df[df['tag_local_identifier'] == tags[j]]
+    points["time_diff"] = points['timestamp'].diff().dt.total_seconds()
+    points = points[points['time_diff'] > 120]
     points['location_lat'].replace('', np.nan, inplace=True)
     points['location_long'].replace('', np.nan, inplace=True)
     points=points.dropna(subset=['location_lat', 'location_long'])
