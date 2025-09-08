@@ -209,7 +209,8 @@ def send_email(send_to, subject, filename):
             server.quit()
 
 
-send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
+send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com", "giayarma.923@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
+
 
 
 
