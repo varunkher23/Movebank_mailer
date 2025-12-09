@@ -99,7 +99,7 @@ n_acc_list=[]
 last_location_list=[]
 enclosure_list=[]
 
-for tag in ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"867688031356557"']:
+for tag in ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"8652"','"867688031356557"']:
     try:
         df_filtered=df[df['tag_local_identifier'] == tag]
         df_acc_filtered=df_acc[df_acc['tag_local_identifier'] == tag]
@@ -210,6 +210,7 @@ def send_email(send_to, subject, filename):
 
 
 send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com", "giavarma.923@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
+
 
 
 
