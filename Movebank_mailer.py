@@ -99,7 +99,7 @@ n_acc_list=[]
 last_location_list=[]
 enclosure_list=[]
 
-for tag in [5949, 5947, 8649,8650, 8652 ]:
+for tag in ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"8652"','"867688031356557"']:
     try:
         df_filtered=df[df['tag_local_identifier'] == tag]
         df_acc_filtered=df_acc[df_acc['tag_local_identifier'] == tag]
@@ -158,7 +158,7 @@ output_html=output.to_html()
 
 kml=simplekml.Kml()
 colors = [simplekml.Color.red,simplekml.Color.blue,simplekml.Color.white,simplekml.Color.yellow,simplekml.Color.green,simplekml.Color.black]
-tags= [5949, 5947, 8649,8650, 8651,8652]
+tags= ['"5949"', '"5947"', '"8649"','"8650"', '"8651"','"8652"']
 for j in range(len(tags)):
     points=df[df['tag_local_identifier'] == tags[j]]
     points["time_diff"] = points['timestamp'].diff().dt.total_seconds()
@@ -210,10 +210,3 @@ def send_email(send_to, subject, filename):
 
 
 send_email(["varunkher23@gmail.com","martinian.manas@gmail.com","david.phinehas@gmail.com", "giavarma.923@gmail.com"], "Raptor tag locations for last week", "df_kml.kml")
-
-
-
-
-
-
-
