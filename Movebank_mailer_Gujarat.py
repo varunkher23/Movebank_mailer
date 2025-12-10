@@ -9,7 +9,6 @@ import geopandas as gpd
 import fiona
 fiona.drvsupport.supported_drivers['KML'] = 'rw'
 import shapely.geometry
-import io
 
 def callMovebankAPI(params):
     # Requests Movebank API with ((param1, value1), (param2, value2),).
@@ -45,40 +44,27 @@ t_s=datetime.now() - timedelta(days=7)
 t_s=f"{t_s.year}{t_s.month:02d}{t_s.day:02d}{t_s.hour:02d}{t_s.minute:02d}{t_s.second:04d}"
 
 params_gps = (('entity_type', 'event'),
-          ('study_id', '766916593'),
-          ('timestamp_start', t_s),
+          ('study_id', '3560194709'),
+          ('timestamp_start', t_s), 
           ('timestamp_end', t_e),
           ('sensor_type_id', '653'),
           ('attributes', 'all'))
 
 data = callMovebankAPI(params_gps)
-print("Data retrieval complete")
+data = data.split("\r\n")
+cols = data[0]
+row_values = data[1:]
 
-# Check if data is empty or only contains header
-if not data or len(data.strip().split('\r\n')) <= 1:
-    print("No data or only header retrieved. Trying with a known study ID: 456")
-    params_gps_test = (('entity_type', 'event'),
-              ('study_id', '456'), # Known study ID with data
-              ('timestamp_start', t_s),
-              ('timestamp_end', t_e),
-              ('sensor_type_id', '653'),
-              ('attributes', 'all'))
+df = pd.DataFrame(columns = cols.split(","))
 
-    data = callMovebankAPI(params_gps_test)
-    print("Data retrieval complete for test study ID")
+for row in row_values[:-1]:
+    row_vals = row.split(",")
+    df.loc[len(df.index)] = row_vals
 
-if data:
-    data_io = io.StringIO(data)
-    df = pd.read_csv(data_io)
-    print("DataFrame created and populated using pd.read_csv")
+df['timestamp']=pd.to_datetime(df['timestamp']).dt.tz_localize("UTC").dt.tz_convert("Asia/Calcutta")
 
-    df['timestamp']=pd.to_datetime(df['timestamp']).dt.tz_localize("UTC").dt.tz_convert("Asia/Calcutta")
-    df['date'] = df['timestamp'].dt.date
-
-    tag_to_individual = df[["tag_local_identifier","individual_local_identifier"]].drop_duplicates().rename(columns = {'tag_local_identifier':'Tag_ID'})
-else:
-    print("No data available to create DataFrame.")
-    df = pd.DataFrame() # Create an empty DataFrame if no data is retrieved
+area_poly = gpd.read_file("Area_polygons.shp" ) #
+tag_to_individual = df[["tag_local_identifier","individual_local_identifier"]].drop_duplicates().rename(columns = {'tag_local_identifier':'Tag_ID'})
 
 tag_list=[]
 latest_battery_voltage_list=[]
